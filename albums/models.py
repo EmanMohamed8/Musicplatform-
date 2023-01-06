@@ -15,6 +15,8 @@ class Album (models.Model):
     name = models.CharField(max_length=50, default='New Album')
     dateTime = models.DateTimeField(default=datetime.now)
     cost = models.FloatField(blank=False)
+    approved = models.BooleanField(
+        default=False, help_text=' Approve the album if its name is not explicit')
 
     def __str__(self) -> str:
         return self.name
