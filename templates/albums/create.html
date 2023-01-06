@@ -1,0 +1,17 @@
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <h2>Album Page</h2>
+    <div>albums {{form.artist}}</div>
+    <br>
+    <div>create album {{form.name}}</div>
+    <br>
+    <div>date {{form.dateTime}}</div>
+    <br>
+    <div>cost {{form.cost}}</div>
+    <br>
+    <div>approved {{form.approved}}</div>
+    <br>
+    <input type="submit" value='save'>
+</form>
+{% endblock content %}
