@@ -1,11 +1,17 @@
 from django.shortcuts import render
-from .forms import AlbumForm
-# Create your views here.
+# from .forms import AlbumForm
+from django.views.generic import CreateView, ListView
+from .models import Album
+from django.urls import reverse
 
 
-def create(requset):
-    if requset.method == 'POST':
-        dataForm = AlbumForm(requset.POST)
-        if (dataForm.is_valid):
-            dataForm.save()
-    return render(requset, 'albums/create.html', {'form': AlbumForm})
+class AlbumList(ListView):
+    model = Album
+
+
+class AlbumCreate(CreateView):
+    model = Album
+    fields = ['artist', 'name', 'dateTime', 'cost']
+
+    def get_success_url(self):
+        return reverse('create_album')

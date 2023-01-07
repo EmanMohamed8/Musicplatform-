@@ -1,0 +1,19 @@
+{% block content %}
+<h1>artist page</h1>
+{% for x in object_list%}
+    {% if x.art_album__approved == True%}
+        <h2>name: {{x.stageName}}</h2>
+        <h2>social Link: {{x.socialLink}}</h2>
+        <h2>approved albums: {{x.approved_albums}}</h2>
+        {% for y in album_detils%}
+            {% if y.artist == x.id %}
+                <h3> Album ID: {{y.id}}</h3>
+                <h3> Album name: {{y.name}}</h3>
+                <h3> Creation Time: {{y.dateTime}}</h3>
+                <h3> Album Cost: {{y.cost}}</h3>
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+{% endblock %}
