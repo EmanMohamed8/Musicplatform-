@@ -3,6 +3,6 @@ from . import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('artists/', views.ArtistList.as_view(), name='artist'),
-    path('artists/create/', login_required(views.ArtistCreate.as_view()),name='create_artist'),
+    path('artists/', views.ArtistList.as_view()),
+    path('artists/<int:pk>', login_required(views.ArtistPk.as_view()))
 ]
