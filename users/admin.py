@@ -11,7 +11,6 @@ class CustomUserAdmin(UserAdmin):
             {
                 'fields': (
                     'bio',
-                    'text_area',
                 )
             }
         )

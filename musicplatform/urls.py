@@ -6,8 +6,8 @@ from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('authentication/', include('knox.urls')),
-    path('authentication/', include('authentication.urls')),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api-token-auth', views.obtain_auth_token),
+    path('', include('authentication.urls')),
+    path('', include('users.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
+    # path('api-token-auth', views.obtain_auth_token),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,11 +1,5 @@
-from django.shortcuts import render
-from django.urls import reverse
-from django.db.models import Count
-from django.views.generic import CreateView, ListView
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.views import APIView
-from .serializers import ArtistSerializers
-from django.http.response import JsonResponse
 from rest_framework.response import Response
 from django .http import Http404
 from django.contrib.auth import get_user_model
@@ -14,7 +8,7 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 
-class Userpk(APIView):
+class UserpkViews(APIView):
     def get_object(self, pk):
         try:
             return User.objects.get(pk=pk)

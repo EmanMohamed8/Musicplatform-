@@ -24,7 +24,7 @@ class Register(generics.GenericAPIView):
 
         return Response({
             "token": token[1],
-            "users": UserSerializer(user, context=self.get_serializer_context().data),
+            "users": UserSerializer(user, context=request).data,
         })
 
 
@@ -39,7 +39,7 @@ class Login(generics.GenericAPIView):
 
         return Response({
             'token': AuthToken.objects.create(user)[1],
-            'user': UserSerializer(user, context=self.get_serializer_context()).data,
+            'user': UserSerializer(user, context=request).data,
         })
 
 

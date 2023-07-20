@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework.response import Response
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.hashers import make_password
@@ -11,7 +10,8 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = {'id', 'username', 'email'}
+        fields = ['id', 'username', 'email']
+        read_only_fields = ['id']
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password1', 'password2')
+        fields = ['email', 'username', 'password1', 'password2']
 
     def validate(self, attrs):
         if attrs['password1'] != attrs['password2']:
@@ -48,10 +48,6 @@ class LoginSerializer(serializers.Serializer):
 
     username = serializers.CharField(required=True,)
     password = serializers.CharField(write_only=True, required=True,)
-
-    class Meta:
-        model = User
-        fields = ('username', 'password')
 
     def validate(self, data):
         user = authenticate(**data)
