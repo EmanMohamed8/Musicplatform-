@@ -1,13 +1,8 @@
 from django.shortcuts import render
-from albums.models import Album
 from .models import Artist
-from django.urls import reverse
-from django.db.models import Count
-from django.views.generic import CreateView, ListView
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ArtistSerializers
-from django.http.response import JsonResponse
 from rest_framework.response import Response
 from django .http import Http404
 
