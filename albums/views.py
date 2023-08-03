@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from .serializers import AlbumSerializers
 from rest_framework.response import Response
 from .models import Album, Artist
+from django.db.models import Q
 
 
 class AlbumPagination(pagination.LimitOffsetPagination):
@@ -15,9 +16,18 @@ class AlbumsList(APIView):
 
     def get(self, request):
         albums = Album.objects.filter(approved=True)
+
+        cost_gte = request.query_params.get('cost__gte')
+        cost_lte = request.query_params.get('cost__lte')
+        name = request.query_params.get('name')
+        if cost_lte is not None:
+            albums = albums.filter(cost__lte=cost_lte)
+        if cost_gte is not None:
+            albums = albums.filter(cost__gte=float(cost_gte))
+        if name is not None:
+            albums = albums.filter(Q(name__icontains=name))
         paginator = self.pagination_class()
         paginated_albums = paginator.paginate_queryset(albums, request)
-
         serializer = AlbumSerializers(paginated_albums, many=True)
         return paginator.get_paginated_response(serializer.data)
 
