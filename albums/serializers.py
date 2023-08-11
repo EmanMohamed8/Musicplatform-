@@ -8,6 +8,4 @@ class AlbumSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'artist', 'name',
-                  'release_datetime', 'cost', 'approved']
-        extra_kwargs = {'release_datetime': {'required': False}}
+        fields = ["id", "artist", "name", "release_datetime", "cost"]
