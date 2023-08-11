@@ -48,3 +48,6 @@ class EndpointsTestCase(APITestCase):
         url = "/custom/albums/"
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+# new task
