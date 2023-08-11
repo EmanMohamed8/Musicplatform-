@@ -8,12 +8,4 @@ class AlbumSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'artist', 'name', 'release_datetime', 'cost']
-
-
-# class AlbumSerializers(serializers.ModelSerializer):
-#     artist = ArtistSerializers()  # Use the ArtistSerializers for nested representation
-
-#     class Meta:
-#         model = Album
-#         fields = ['id', 'artist', 'name', 'release_datetime', 'cost']
+        fields = ["id", "artist", "name", "release_datetime", "cost"]
