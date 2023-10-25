@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ArtistSerializers
 from rest_framework.response import Response
-from django .http import Http404
+from django.http import Http404
 
 
 class ArtistList(APIView):
@@ -15,16 +15,10 @@ class ArtistList(APIView):
 
     def post(self, request):
         serializer = ArtistSerializers(data=request.data)
-        if (serializer.is_valid()):
+        if serializer.is_valid():
             serializer.save()
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED
-            )
-        return Response(
-            serializer.data,
-            status=status.HTTP_400_BAD_REQUEST
-        )
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ArtistPk(APIView):

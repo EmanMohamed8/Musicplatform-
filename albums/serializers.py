@@ -9,3 +9,9 @@ class AlbumSerializers(serializers.ModelSerializer):
     class Meta:
         model = Album
         fields = ["id", "artist", "name", "release_datetime", "cost"]
+
+
+class AlbumSerializersForPost(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ["name", "cost", "approved"]
